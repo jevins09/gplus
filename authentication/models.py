@@ -3,6 +3,10 @@ from django.db import models
 
 # Create your models here.
 
+'''
+When substituting a custom user model, it is required that you also define a related Manager class that overrides the
+create_user() and create_superuser() methods.
+'''
 class AccountManager(BaseUserManager):
 
     #This method creates a new user and returns error if any appropriately.
@@ -13,24 +17,21 @@ class AccountManager(BaseUserManager):
         if not kwargs.get('username'):
             raise ValueError('Users must have a valid username')
 
-        '''
-        Since we haven't defined a model attribute on the AccountManager class,
-        self.model refers to the model attribute of BaseUserManager. This defaults
-        to settings.AUTH_USER_MODEL, which we will change in just a moment to
-        point to the Account class.
-        '''
 
-        '''
         account = self.model(
-            email = self.normalize_email(email), username=kwargs.get('username')
+            email=self.normalize_email(email), username=kwargs.get('username')
         )
-        '''
+
+        account.set_password(password)
+        account.save()
+
+        return account
+
+    def create_superuser(self, email, password, **kwargs):
 
         account = self.create_account(email, password, **kwargs)
 
         account.is_admin = True
-
-        #account.set_password(password)
         account.save()
 
         return account
