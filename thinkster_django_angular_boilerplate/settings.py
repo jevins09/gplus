@@ -113,3 +113,16 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+'''
+Even though we created the Account model,
+the command python manage.py createsuperuser still creates User objects.
+This is because, Django still believes that User is the model we want to
+use for our information.
+
+To set things straight and start using Account as our authentication model,
+we have to update settings.AUTH_USER_MODEL.
+'''
+
+AUTH_USER_MODEL = 'authentication.Account'
+#This line tells Django to look in the authentication app and find a model named Account

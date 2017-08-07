@@ -1,7 +1,39 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
 # Create your models here.
+
+class AccountManager(BaseUserManager):
+
+    #This method creates a new user and returns error if any appropriately.
+    def create_user(self, email, password=None, **kwargs):
+        if not email:
+            raise ValueError('Users must have a valid email address.')
+
+        if not kwargs.get('username'):
+            raise ValueError('Users must have a valid username')
+
+        '''
+        Since we haven't defined a model attribute on the AccountManager class,
+        self.model refers to the model attribute of BaseUserManager. This defaults
+        to settings.AUTH_USER_MODEL, which we will change in just a moment to
+        point to the Account class.
+        '''
+
+        '''
+        account = self.model(
+            email = self.normalize_email(email), username=kwargs.get('username')
+        )
+        '''
+
+        account = self.create_account(email, password, **kwargs)
+
+        account.is_admin = True
+
+        #account.set_password(password)
+        account.save()
+
+        return account
 
 class Account(AbstractBaseUser):
 
