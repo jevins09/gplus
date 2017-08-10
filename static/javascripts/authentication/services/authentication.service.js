@@ -13,7 +13,12 @@
 
         var Authentication = {
             login: login,
-            register: register
+            register: register,
+
+            getAuthenticatedAccount: getAuthenticatedAccount(),
+            isAuthenticated: isAuthenticated(),
+            setAuthenticatedAccount: setAuthenticatedAccount(),
+            unauthenticate: unauthenticate()
         };
 
         return Authentication;
@@ -32,6 +37,26 @@
             return $http.post('/api/v1/auth/login', {
                 email: email, password: password
             });
+        }
+
+        function getAuthenticatedAccount(){
+            if (!$cookies.authenticatedAccount){
+                return;
+            }
+
+            return JSON.parse($cookies.authenticatedAccount);
+        }
+
+        function isAuthenticated() {
+            return !!$cookies.authenticatedAccount;
+        }
+
+        function setAuthenticatedAccount(account) {
+            $cookies.authenticatedAccount = JSON.stringify(account);
+        }
+
+        function unauthenticate() {
+            delete $cookies.authenticatedAccount;
         }
     }
 })();
