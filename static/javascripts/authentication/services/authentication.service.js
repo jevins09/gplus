@@ -36,7 +36,18 @@
         function login(email,password) {
             return $http.post('/api/v1/auth/login', {
                 email: email, password: password
-            });
+            }).then(loginSuccessFn, loginErrorFn);
+
+
+            function loginSuccessFn(data, status, headers, config) {
+            Authentication.setAuthenticatedAccount(data.data);
+
+            window.location = '/';
+            }
+
+            function loginErrorFn(data, stauts, headers, config) {
+                console.error('Epic Failure!!!');
+            }
         }
 
         function getAuthenticatedAccount(){
