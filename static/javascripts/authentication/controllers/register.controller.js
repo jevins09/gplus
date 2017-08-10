@@ -20,4 +20,12 @@
         }
     }
 
+    activate();
+
+    function activate() {
+        if (Authentication.isAuthenticated()) {
+            $location.url('/')
+        }
+    }
+
 })();
