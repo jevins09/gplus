@@ -15,10 +15,10 @@
             login: login,
             register: register,
 
-            getAuthenticatedAccount: getAuthenticatedAccount(),
-            isAuthenticated: isAuthenticated(),
-            setAuthenticatedAccount: setAuthenticatedAccount(),
-            unauthenticate: unauthenticate()
+            getAuthenticatedAccount: getAuthenticatedAccount,
+            isAuthenticated: isAuthenticated,
+            setAuthenticatedAccount: setAuthenticatedAccount,
+            unauthenticate: unauthenticate
         };
 
         return Authentication;
@@ -42,7 +42,7 @@
         }
 
         function login(email,password) {
-            return $http.post('/api/v1/auth/login', {
+            return $http.post('/api/v1/auth/login/', {
                 email: email, password: password
             }).then(loginSuccessFn, loginErrorFn);
 
@@ -58,8 +58,8 @@
             }
         }
 
-        function getAuthenticatedAccount(){
-            if (!$cookies.authenticatedAccount){
+        function getAuthenticatedAccount() {
+            if (!$cookies.authenticatedAccount) {
                 return;
             }
 
