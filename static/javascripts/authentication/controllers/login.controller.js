@@ -17,6 +17,12 @@
 
         activate();
 
+     function activate() {
+         if (Authentication.isAuthenticated()) {
+             $location.url('/')
+         }
+     }
+
     function login() {
         Authentication.login(vm.email, vm.password);
         }
