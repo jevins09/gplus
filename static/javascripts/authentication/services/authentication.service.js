@@ -13,6 +13,7 @@
 
         var Authentication = {
             login: login,
+            logout: logout,
             register: register,
 
             getAuthenticatedAccount: getAuthenticatedAccount,
