@@ -19,7 +19,7 @@
         };
 
         return Posts;
-        
+
         function all() {
             return $http.get('/api/v1/posts/');
         }
