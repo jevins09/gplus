@@ -5,4 +5,3 @@ class IsAuthorOfPost(permissions.BasePermission):
         if request.user:
             return post.author == request.user
         return False
-    
