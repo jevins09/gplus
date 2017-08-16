@@ -60,7 +60,7 @@
             if (current !== original) {
                 vm.columns = [];
 
-                for (var i =0; i < calculateNumberOfColumns(); ++i) {
+                for (var i = 0; i < calculateNumberOfColumns(); ++i) {
                     vm.columns.push([]);
                 }
 
@@ -71,6 +71,5 @@
                 }
             }
         }
-
     }
 })();

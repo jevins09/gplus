@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('thinkster.posts',[
+        .module('thinkster.posts', [
             'thinkster.posts.controllers',
             'thinkster.posts.directives',
             'thinkster.posts.services'
