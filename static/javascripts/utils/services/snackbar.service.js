@@ -18,7 +18,7 @@
         return Snackbar;
 
     function _snackbar(content, options) {
-        options = _.extend({ timeout: 3000 }, options);
+        options = _.extend({ timeout: 7000 }, options);
         options.content = content;
 
         $.snackbar(options);

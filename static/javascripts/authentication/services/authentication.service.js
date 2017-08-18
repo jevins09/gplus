@@ -32,14 +32,15 @@
                 password: password,
                 email: email
             }).then(registerSuccessFn, registerErrorFn);
-        }
 
-        function registerSuccessFn(data, status, headers, config) {
-            Authentication.login(email, password)
-        }
 
-        function registerErrorFn(data, status, header, config) {
-            console.error('Epic Failure!');
+            function registerSuccessFn(data, status, headers, config) {
+                Authentication.login(email, password)
+            }
+
+            function registerErrorFn(data, status, header, config) {
+                console.error('Epic Failure!');
+            }
         }
 
         function login(email,password) {
@@ -55,7 +56,7 @@
             }
 
             function loginErrorFn(data, stauts, headers, config) {
-                Snackbar.show('Invalid Credentials Provided!!')
+                Snackbar.show('Invalid Credentials Provided!! Please Login Again!')
                 console.error('Epic Failure!!!');
 
             }
