@@ -6,10 +6,10 @@
         .module('thinkster.authentication.services')
         .factory('Authentication', Authentication);
 
-    Authentication.$inject = ['$cookies', '$http'];
+    Authentication.$inject = ['$cookies', '$http', 'Snackbar'];
 
 
-    function Authentication($cookies, $http) {
+    function Authentication($cookies, $http, Snackbar) {
 
         var Authentication = {
             login: login,
@@ -55,7 +55,9 @@
             }
 
             function loginErrorFn(data, stauts, headers, config) {
+                Snackbar.show('Invalid Credentials Provided!!')
                 console.error('Epic Failure!!!');
+
             }
         }
 

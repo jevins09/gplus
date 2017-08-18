@@ -28,7 +28,7 @@
             controller: 'ProfileController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/profiles/profile.html'
-        }).when('/+username/settings', {
+        }).when('/+:username/settings', {
             controller: 'ProfileSettingsController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/profiles/settings.html'
