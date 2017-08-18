@@ -50,7 +50,7 @@
         }
 
         function destroy() {
-            Profile.destroy(vm.profile.username).then(profileSuccessFn, profileErrorFn);
+            Profile.destroy(vm.profile).then(profileSuccessFn, profileErrorFn);
 
             function profileSuccessFn(data, status, headers, config) {
                 Authentication.unauthenticate();
