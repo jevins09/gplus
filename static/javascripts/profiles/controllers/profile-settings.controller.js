@@ -76,7 +76,7 @@
 
             function profileErrorFn(data, status, headers, config) {
                 console.log(data);
-                Snackbar.error(data.error);
+                Snackbar.error('New Password and Confirm Password must match!!');
             }
 
         }

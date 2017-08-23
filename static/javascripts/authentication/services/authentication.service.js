@@ -56,7 +56,7 @@
             }
 
             function loginErrorFn(data, status, headers, config) {
-                Snackbar.show('Invalid Credentials Provided!! Please Login Again!')
+                Snackbar.error('Invalid Credentials Provided!! Please Login Again!')
                 console.error('Epic Failure!!!');
 
             }

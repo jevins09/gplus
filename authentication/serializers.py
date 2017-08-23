@@ -1,6 +1,8 @@
 from django.contrib.auth import update_session_auth_hash
 
-from rest_framework import serializers
+from rest_framework import serializers, status
+
+from rest_framework.response import Response
 
 from authentication.models import Account
 
@@ -41,6 +43,9 @@ class AccountSerializer(serializers.ModelSerializer):
         if password and confirm_password and password == confirm_password:
             instance.set_password(password)
             instance.save()
+        else:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
 
         update_session_auth_hash(self.context.get('request'), instance)
 
