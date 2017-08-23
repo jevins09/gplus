@@ -55,7 +55,7 @@
             window.location = '/';
             }
 
-            function loginErrorFn(data, stauts, headers, config) {
+            function loginErrorFn(data, status, headers, config) {
                 Snackbar.show('Invalid Credentials Provided!! Please Login Again!')
                 console.error('Epic Failure!!!');
 

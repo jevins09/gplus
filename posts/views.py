@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from posts.models import Post
 from posts.permissions import IsAuthorOfPost
 from posts.serializers import PostSerializer
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 

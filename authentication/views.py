@@ -40,6 +40,41 @@ class AccountViewSet(viewsets.ModelViewSet):
             'message': 'Account could not be created with received data!'
         }, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+    #     serializer = self.serializer_class(data=request.data)
+    #
+    #     if serializer.is_valid():
+    #
+    #         password = serializer.data.get("password")
+    #         confirm_password = serializer.data.get('confirm_password')
+    #         tagline = serializer.data.get('tagline')
+    #         email = serializer.data.get('email')
+    #
+    #         if password and confirm_password and password == confirm_password:
+    #             self.object.set_password(serializer.data.get('password'))
+    #             self.object.save()
+    #             return Response(serializer.validated_data, status=status.HTTP_200_OK)
+    #         else:
+    #             return Response({
+    #             'status': 'Bad Request',
+    #             'message': 'Password and Confirm passwords do not match!'
+    #         }, status=status.HTTP_400_BAD_REQUEST)
+    #
+    #         if password is none and confirm_password is none:
+    #             self.object.save()
+    #             return Response(serializer.validated_data, status=status.HTTP_200_OK)
+    #
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # def update(self, instance, validated_data):
+    #
+    #     instance.username = validated_data.get('username', instance.username)
+    #     instance.tagline = validated_data.get('tagline', instance.tagline)
+    #
+    #     instance.save()
+
+
 class LoginView(views.APIView):
     def post(self, request, format=None):
         data = json.loads(request.body)

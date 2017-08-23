@@ -40,10 +40,12 @@
             Profile.get(username).then(profileSuccessFn, profileErrorFn);
 
             function profileSuccessFn(data, status, headers, config) {
+                console.log(data);
                 vm.profile = data.data;
             }
 
             function profileErrorFn(data, status, headers, config) {
+                console.log(data);
                 $location.url('/');
                 Snackbar.error('That user does not exist!');
             }
@@ -68,10 +70,12 @@
             Profile.update(vm.profile).then(profileSuccessFn, profileErrorFn);
 
             function profileSuccessFn(data, status, headers, config) {
+                console.log(data);
                 Snackbar.show('Your profile has been updated!');
             }
 
             function profileErrorFn(data, status, headers, config) {
+                console.log(data);
                 Snackbar.error(data.error);
             }
 
