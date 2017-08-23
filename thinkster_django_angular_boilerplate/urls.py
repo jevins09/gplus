@@ -7,6 +7,8 @@ from rest_framework_nested import routers
 from authentication.views import AccountViewSet, LoginView, LogoutView
 from posts.views import AccountPostsViewSet, PostViewSet
 
+from django.contrib import admin
+
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 router.register(r'posts', PostViewSet)
@@ -18,6 +20,9 @@ accounts_router.register(r'posts', AccountPostsViewSet)
 
 urlpatterns = patterns(
     '',
+
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin$', include(admin.site.urls)),
 
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include(accounts_router.urls)),

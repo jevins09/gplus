@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
 # Create your models here.
@@ -29,14 +29,16 @@ class AccountManager(BaseUserManager):
 
     def create_superuser(self, email, password, **kwargs):
 
-        account = self.create_account(email, password, **kwargs)
+        account = self.create_user(email, password, **kwargs)
 
         account.is_admin = True
+        account.is_superuser = True
+        account.is_staff = True
         account.save()
 
         return account
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
@@ -45,7 +47,13 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=40, blank=True)
     tagline = models.CharField(max_length=140, blank=True)          #This will also be displayed on user's profile
 
-    is_admin = models.BooleanField(default=False)
+
+    is_staff = models.BooleanField(('staff status'), default=False,
+                                   help_text=('Designates whether the user can log into this admin site')
+                                   )
+    is_active = models.BooleanField(('active'), default=True,
+                                    help_text = ('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.')
+                                    )
 
     #auto_now_add=True tell django that this field should be automatically set when object is created.
     created_at = models.DateTimeField(auto_now_add=True)
